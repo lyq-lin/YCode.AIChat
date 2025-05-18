@@ -38,6 +38,73 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <Style x:Key="MessageItemStyle"
+                   TargetType="{x:Type ContentPresenter}">
+                <Setter Property="ContentTemplateSelector">
+                    <Setter.Value>
+                        <local:AIMessageDataTemplateSelector>
+                            <local:AIMessageDataTemplateSelector.AI>
+                                <DataTemplate DataType="{x:Type local:AIChatMessageViewModel}">
+                                    <Grid HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Width="15"
+                                                Height="15"
+                                                VerticalAlignment="Top"
+                                                CornerRadius="5"
+                                                Background="Pink" />
+
+                                        <Border Grid.Column="1"
+                                                Margin="8,0,0,0"
+                                                CornerRadius="3"
+                                                Background="SkyBlue">
+                                            <TextBox Margin="8"
+                                                     IsReadOnly="True"
+                                                     Background="Transparent"
+                                                     Text="{Binding Message}"
+                                                     BorderThickness="0"
+                                                     TextWrapping="Wrap" />
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </local:AIMessageDataTemplateSelector.AI>
+                            <local:AIMessageDataTemplateSelector.User>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Right">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Margin="0,0,8,0"
+                                                CornerRadius="3"
+                                                Background="SkyBlue">
+                                            <TextBox Margin="8"
+                                                     IsReadOnly="True"
+                                                     Background="Transparent"
+                                                     BorderThickness="0"
+                                                     Text="{Binding Message}"
+                                                     TextWrapping="Wrap" />
+                                        </Border>
+
+                                        <Border Grid.Column="1"
+                                                Width="15"
+                                                Height="15"
+                                                VerticalAlignment="Top"
+                                                CornerRadius="5"
+                                                Background="CadetBlue" />
+                                    </Grid>
+                                </DataTemplate>
+                            </local:AIMessageDataTemplateSelector.User>
+                        </local:AIMessageDataTemplateSelector>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Margin" Value="0,8,0,0" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -48,11 +115,13 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="【标题】"
+        <TextBlock Text="{Binding Title}"
                    TextAlignment="Center" />
 
         <ItemsControl x:Name="messages"
-                      Grid.Row="1" />
+                      Grid.Row="1"
+                      ItemContainerStyle="{StaticResource MessageItemStyle}"
+                      ItemsSource="{Binding Messages}" />
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -65,6 +134,7 @@
                     BorderThickness="1">
                 <TextBox MinHeight="200"
                          Padding="8"
+                         Text="{Binding Prompt}"
                          BorderThickness="0"
                          TextWrapping="Wrap"
                          MaxLines="999" />
@@ -75,6 +145,7 @@
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
                 <Button Content="发送"
+                        Command="{Binding SendCommand}"
                         Style="{StaticResource SendButtonStyle}" />
             </StackPanel>
         </Grid>
