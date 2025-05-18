@@ -9,7 +9,9 @@ namespace YCode.AIChat
 		{
 			var app = new Application();
 
-			var page = new AIChatPage();
+			var context = new AIContext();
+
+			var page = new AIChatPage(context);
 
 			var window = new Window();
 

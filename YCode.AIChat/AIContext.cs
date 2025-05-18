@@ -1,4 +1,6 @@
 ﻿using Microsoft.SemanticKernel;
+using OpenAI;
+using System.ClientModel;
 
 namespace YCode.AIChat
 {
@@ -15,9 +17,17 @@ namespace YCode.AIChat
 
 		private Kernel CreateKernel()
 		{
+			var client = new OpenAIClient(
+				new ApiKeyCredential(Environment.GetEnvironmentVariable("AIChatKey")!),
+				new OpenAIClientOptions()
+				{
+					Endpoint = new Uri("https://api.deepseek.com")
+				});
+
 			var builder = Kernel.CreateBuilder();
 
-			//TODO: 
+			builder.AddOpenAIChatCompletion("deepseek-chat", client);
+			builder.AddOpenAIChatCompletion("deepseek-reasoner", client);
 
 			return builder.Build();
 		}
