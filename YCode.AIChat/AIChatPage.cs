@@ -1,11 +1,16 @@
 ﻿using System.Windows;
+using YCode.AIChat.SDK;
 
 namespace YCode.AIChat
 {
 	internal class AIChatPage
 	{
-		public AIChatPage()
+		private readonly AIContext _context;
+
+		public AIChatPage(AIContext context)
 		{
+			_context = context;
+
 			this.Content = new AIChatView();
 
 			this.DataContext = new AIChatViewModel();
@@ -21,23 +26,15 @@ namespace YCode.AIChat
 
 		private void Fill()
 		{
-			//Test
 			if (this.DataContext is AIChatViewModel viewModel)
 			{
-				viewModel.Messages.Add(new AIChatMessageViewModel()
-				{
-					Role = SDK.AIRole.User,
-					Message = "什么是MCP?",
-					CreateAt = DateTime.Now
-				});
-
-				viewModel.Messages.Add(new AIChatMessageViewModel()
-				{
-					Role = SDK.AIRole.AI,
-					Message = "MCP是XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-					CreateAt = DateTime.Now
-				});
+				viewModel.SendCommand = new AICommand(this.OnSend);
 			}
+		}
+
+		private void OnSend(object? parameter)
+		{
+
 		}
 	}
 }
