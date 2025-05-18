@@ -1,5 +1,6 @@
 
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace YCode.AIChat.SDK
 {
@@ -7,14 +8,23 @@ namespace YCode.AIChat.SDK
 	{
 		public event PropertyChangedEventHandler? PropertyChanged;
 
-		protected void OnPropertyChanged(string propertyName)
+		protected virtual void OnPropertyChanged(string propertyName)
 		{
 			this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
-		protected virtual void OnPropertyChanged()
+		protected virtual bool OnPropertyChanged<TValue>(ref TValue field, TValue value, [CallerMemberName] string propertyName = "")
 		{
-			OnPropertyChanged(string.Empty);
+			if (!Equals(field, value))
+			{
+				field = value;
+
+				this.OnPropertyChanged(propertyName);
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
