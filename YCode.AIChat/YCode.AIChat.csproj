@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.51.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\YCode.AIChat.SDK\YCode.AIChat.SDK.csproj" />
+  </ItemGroup>
+
 </Project>

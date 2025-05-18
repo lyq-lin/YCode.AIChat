@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35919.96 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCode.AIChat", "YCode.AIChat\YCode.AIChat.csproj", "{6093791C-C07B-450C-948C-33D61191D431}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCode.AIChat.SDK", "YCode.AIChat.SDK\YCode.AIChat.SDK.csproj", "{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6093791C-C07B-450C-948C-33D61191D431}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6093791C-C07B-450C-948C-33D61191D431}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6093791C-C07B-450C-948C-33D61191D431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

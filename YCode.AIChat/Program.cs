@@ -9,11 +9,15 @@ namespace YCode.AIChat
 		{
 			var app = new Application();
 
+			var page = new AIChatPage();
+
 			var window = new Window();
 
 			window.Title = "YCode.AIChat";
 
 			window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+			window.Content = page.Content;
 
 			app.Run(window);
 		}
