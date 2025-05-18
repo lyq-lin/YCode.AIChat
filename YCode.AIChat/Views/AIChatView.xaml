@@ -165,6 +165,13 @@
                         Margin="0,8,0,0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
+
+                <ComboBox Margin="0,0,8,0"
+                          ItemsSource="{Binding Models}"
+                          DisplayMemberPath="Value"
+                          SelectedValuePath="Key"
+                          SelectedValue="{Binding ModelId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
                 <Button Content="发送"
                         Command="{Binding SendCommand}"
                         Style="{StaticResource SendButtonStyle}" />

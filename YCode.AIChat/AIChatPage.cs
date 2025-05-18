@@ -77,7 +77,7 @@ namespace YCode.AIChat
 					Temperature = 0.3f,
 					MaxTokens = 1000,
 					TopP = 1.0f,
-					ModelId = "deepseek-chat"
+					ModelId = viewModel.ModelId
 				};
 
 				var args = new KernelArguments(settings);
