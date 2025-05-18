@@ -1,6 +1,8 @@
 ﻿using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using System.ClientModel.Primitives;
+using System.Text.Json.Nodes;
 using System.Windows;
 using YCode.AIChat.SDK;
 
@@ -84,8 +86,35 @@ namespace YCode.AIChat
 
 				try
 				{
+					var isRasoning = default(bool?);
+
 					await foreach (var update in _context.Kernel.InvokePromptStreamingAsync(user.Message, args))
 					{
+						var jsonContent = JsonNode.Parse(ModelReaderWriter.Write(update.InnerContent!));
+
+						var reasoningUpdate = jsonContent!["choices"]![0]!["delta"]!["reasoning_content"];
+
+						if (reasoningUpdate != null)
+						{
+							if (!isRasoning.HasValue)
+							{
+								isRasoning = false;
+
+								assistant.Message += "推理中... \n\n";
+							}
+
+							assistant.Message += reasoningUpdate;
+
+							continue;
+						}
+
+						if (isRasoning.HasValue && !isRasoning.Value)
+						{
+							isRasoning = true;
+
+							assistant.Message += "\n\n 推理结束.\n\n";
+						}
+
 						assistant.Message += update;
 					}
 				}
