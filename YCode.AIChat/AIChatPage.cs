@@ -70,6 +70,8 @@ namespace YCode.AIChat
 
 				viewModel.Messages.Add(assistant);
 
+				viewModel.Prompt = String.Empty;
+
 				var settings = new OpenAIPromptExecutionSettings()
 				{
 					Temperature = 0.3f,
