@@ -18,7 +18,7 @@ namespace YCode.AIChat
 		private Kernel CreateKernel()
 		{
 			var client = new OpenAIClient(
-				new ApiKeyCredential(Environment.GetEnvironmentVariable("AIChatKey")!),
+				new ApiKeyCredential(Environment.GetEnvironmentVariable("AICHATKey", EnvironmentVariableTarget.Machine)!),
 				new OpenAIClientOptions()
 				{
 					Endpoint = new Uri("https://api.deepseek.com")
