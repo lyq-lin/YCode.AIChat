@@ -5,9 +5,78 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:YCode.AIChat"
              d:DesignHeight="450"
-             d:DesignWidth="800"
+             d:DesignWidth="300"
              mc:Ignorable="d">
-    <Grid>
-        <TextBlock Text="Hello,AI!" />
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SendButtonStyle"
+                   TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="CadetBlue" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="8" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="3"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+
+                                <ContentPresenter Margin="{TemplateBinding Padding}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="DeepSkyBlue" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="SkyBlue" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="【标题】"
+                   TextAlignment="Center" />
+
+        <ItemsControl x:Name="messages"
+                      Grid.Row="1" />
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="Gray"
+                    CornerRadius="5"
+                    BorderThickness="1">
+                <TextBox MinHeight="200"
+                         Padding="8"
+                         BorderThickness="0"
+                         TextWrapping="Wrap"
+                         MaxLines="999" />
+            </Border>
+
+            <StackPanel Grid.Row="1"
+                        Margin="0,8,0,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button Content="发送"
+                        Style="{StaticResource SendButtonStyle}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

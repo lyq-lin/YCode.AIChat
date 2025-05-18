@@ -13,6 +13,8 @@ namespace YCode.AIChat
 
 			var window = new Window();
 
+			window.Width = 400;
+
 			window.Title = "YCode.AIChat";
 
 			window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
