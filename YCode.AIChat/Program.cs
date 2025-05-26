@@ -1,29 +1,27 @@
 ﻿using System.Windows;
+using YCode.AIChat;
 
-namespace YCode.AIChat
+var thread = new Thread(() =>
 {
-	internal class Program
-	{
-		[STAThread]
-		private static void Main(string[] args)
-		{
-			var app = new Application();
+	var app = new Application();
 
-			var context = new AIContext();
+	var context = new AIContext();
 
-			var page = new AIChatPage(context);
+	var page = new AIChatPage(context);
 
-			var window = new Window();
+	var window = new Window();
 
-			window.Width = 400;
+	window.Width = 400;
 
-			window.Title = "YCode.AIChat";
+	window.Title = "YCode.AIChat";
 
-			window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+	window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-			window.Content = page.Content;
+	window.Content = page.Content;
 
-			app.Run(window);
-		}
-	}
-}
+	app.Run(window);
+});
+
+_ = thread.TrySetApartmentState(ApartmentState.STA);
+
+thread.Start();
