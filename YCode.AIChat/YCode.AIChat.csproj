@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.51.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NeoMarkdig\NeoMarkdig.csproj" />
     <ProjectReference Include="..\YCode.AIChat.SDK\YCode.AIChat.SDK.csproj" />
   </ItemGroup>
 

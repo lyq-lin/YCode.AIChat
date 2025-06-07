@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCode.AIChat", "YCode.AIChat\YCode.AIChat.csproj", "{6093791C-C07B-450C-948C-33D61191D431}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCode.AIChat.SDK", "YCode.AIChat.SDK\YCode.AIChat.SDK.csproj", "{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoMarkdig", "NeoMarkdig\NeoMarkdig.csproj", "{EAF08B2B-7C5F-4A58-8A7A-CC2AC1C0B154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C23E7FB7-23A4-486D-BD5B-DAA0ADFB765C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAF08B2B-7C5F-4A58-8A7A-CC2AC1C0B154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAF08B2B-7C5F-4A58-8A7A-CC2AC1C0B154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAF08B2B-7C5F-4A58-8A7A-CC2AC1C0B154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAF08B2B-7C5F-4A58-8A7A-CC2AC1C0B154}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

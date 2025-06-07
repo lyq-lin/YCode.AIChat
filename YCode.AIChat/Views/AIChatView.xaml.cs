@@ -11,5 +11,10 @@ namespace YCode.AIChat
 		{
 			InitializeComponent();
 		}
+
+		public void MessageScrollToEnd()
+		{
+			messages.ScrollToEnd();
+		}
 	}
 }

@@ -3,12 +3,11 @@ using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using System.ClientModel.Primitives;
 using System.Text.Json.Nodes;
-using System.Windows;
 using YCode.AIChat.SDK;
 
 namespace YCode.AIChat
 {
-	internal class AIChatPage
+	internal class AIChatPage : AIPage<AIChatView, AIChatViewModel>
 	{
 		private readonly AIContext _context;
 
@@ -16,18 +15,8 @@ namespace YCode.AIChat
 		{
 			_context = context;
 
-			this.Content = new AIChatView();
-
-			this.DataContext = new AIChatViewModel();
-
-			this.Content.DataContext = this.DataContext;
-
 			this.Fill();
 		}
-
-		public FrameworkElement Content { get; }
-
-		public object DataContext { get; }
 
 		private void Fill()
 		{
@@ -84,6 +73,8 @@ namespace YCode.AIChat
 
 				var args = new KernelArguments(settings);
 
+				this.Content.MessageScrollToEnd();
+
 				try
 				{
 					var isRasoning = default(bool?);
@@ -112,10 +103,12 @@ namespace YCode.AIChat
 						{
 							isRasoning = true;
 
-							assistant.Message += "\n\n 推理结束.\n\n";
+							assistant.Message += "\n\n------ 推理结束. ------\n\n";
 						}
 
 						assistant.Message += update;
+
+						this.Content.MessageScrollToEnd();
 					}
 				}
 				catch (Exception ex)
