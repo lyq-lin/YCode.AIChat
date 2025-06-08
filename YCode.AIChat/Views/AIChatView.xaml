@@ -68,6 +68,7 @@
                                                                     IsReadOnly="True"
                                                                     Background="Transparent"
                                                                     Text="{Binding Message}"
+                                                                    UpdateText="{Binding PreviewMessage}"
                                                                     BorderThickness="0" />
                                         </Border>
                                     </Grid>

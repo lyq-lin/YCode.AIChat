@@ -5,10 +5,17 @@ namespace YCode.AIChat
 	internal class AIChatMessageViewModel : ViewModelBase
 	{
 		private string _message = String.Empty;
+		private string _previewMessage = String.Empty;
 
 		private AIRole _role;
 
 		public DateTime CreateAt { get; set; }
+
+		public string PreviewMessage
+		{
+			get { return _previewMessage; }
+			set { this.OnPropertyChanged(ref _previewMessage, value); }
+		}
 
 		public AIRole Role
 		{

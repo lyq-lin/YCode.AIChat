@@ -18,6 +18,8 @@ namespace NeoMarkdig
 				.Build();
 
 			_renderer = new WpfRenderer(this.Document);
+
+			this.IsDocumentEnabled = true;
 		}
 
 		public void FullTextChanged(string text)
@@ -66,7 +68,7 @@ namespace NeoMarkdig
 		{
 			if (d is RichChatTextBox box && e.NewValue is string update)
 			{
-				box.FullTextChanged(update);
+				box.UpdateTextChanged(update);
 			}
 		}
 

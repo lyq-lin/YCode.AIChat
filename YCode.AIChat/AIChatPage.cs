@@ -96,6 +96,8 @@ namespace YCode.AIChat
 
 							assistant.Message += reasoningUpdate;
 
+							assistant.PreviewMessage = reasoningUpdate.ToJsonString();
+
 							continue;
 						}
 
@@ -107,6 +109,8 @@ namespace YCode.AIChat
 						}
 
 						assistant.Message += update;
+
+						assistant.PreviewMessage = update.ToString();
 
 						this.Content.MessageScrollToEnd();
 					}

@@ -1,4 +1,6 @@
-﻿using Microsoft.SemanticKernel;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.SemanticKernel;
 using OpenAI;
 using System.ClientModel;
 
@@ -28,6 +30,8 @@ namespace YCode.AIChat
 
 			builder.AddOpenAIChatCompletion("deepseek-chat", client);
 			builder.AddOpenAIChatCompletion("deepseek-reasoner", client);
+
+			builder.Services.AddLogging(builder => builder.AddSimpleConsole().SetMinimumLevel(LogLevel.Trace));
 
 			return builder.Build();
 		}
