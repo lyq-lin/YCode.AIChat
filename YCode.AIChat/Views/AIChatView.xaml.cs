@@ -14,7 +14,7 @@ namespace YCode.AIChat
 
 		public void MessageScrollToEnd()
 		{
-			messages.ScrollToEnd();
+			this.Dispatcher.BeginInvoke(messages.ScrollToEnd, System.Windows.Threading.DispatcherPriority.Background);
 		}
 	}
 }
