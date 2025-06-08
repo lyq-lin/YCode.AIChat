@@ -10,6 +10,7 @@ namespace YCode.AIChat
 	internal class AIChatPage : AIPage<AIChatView, AIChatViewModel>
 	{
 		private readonly AIContext _context;
+		private CancellationTokenSource? _tokenSource;
 
 		public AIChatPage(AIContext context)
 		{
@@ -71,15 +72,20 @@ namespace YCode.AIChat
 					ModelId = viewModel.ModelId
 				};
 
-				var args = new KernelArguments(settings);
-
 				this.Content.MessageScrollToEnd();
 
 				try
 				{
 					var isRasoning = default(bool?);
 
-					await foreach (var update in _context.Kernel.InvokePromptStreamingAsync(user.Message, args))
+					_tokenSource?.Cancel();
+
+					_tokenSource = new();
+
+					var chat = _context.Kernel.GetRequiredService<IChatCompletionService>();
+
+					await foreach (var update in
+						chat.GetStreamingChatMessageContentsAsync(history, settings, cancellationToken: _tokenSource.Token))
 					{
 						var jsonContent = JsonNode.Parse(ModelReaderWriter.Write(update.InnerContent!));
 
@@ -113,10 +119,18 @@ namespace YCode.AIChat
 						assistant.PreviewMessage = update.ToString();
 
 						this.Content.MessageScrollToEnd();
+
+						//GC.Collect(3, GCCollectionMode.Forced);
 					}
 				}
 				catch (Exception ex)
 				{
+					_tokenSource?.Cancel();
+
+					_tokenSource?.Dispose();
+
+					_tokenSource = null;
+
 					assistant.Message += ex.Message;
 				}
 			}

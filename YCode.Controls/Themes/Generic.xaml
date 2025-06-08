@@ -19,11 +19,9 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <StackPanel HorizontalAlignment="Right"
-                                        Orientation="Horizontal">
+                            <Grid HorizontalAlignment="Right">
                                 <Button Content="Copy" />
-                            </StackPanel>
-
+                            </Grid>
 
                             <sync:EditorViewHost Name="PART_EditorViewHost"
                                                  Grid.Row="1" />
