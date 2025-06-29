@@ -1,7 +1,5 @@
 ﻿using Markdig;
 using Markdig.Renderers;
-using Markdig.Renderers.Wpf;
-using NeoMarkdig.Renders;
 
 namespace NeoMarkdig
 {
@@ -14,14 +12,14 @@ namespace NeoMarkdig
 
 		public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)
 		{
-			var code = renderer.ObjectRenderers.FindExact<CodeBlockRenderer>();
+			//var code = renderer.ObjectRenderers.FindExact<CodeBlockRenderer>();
 
-			if (code is not null)
-			{
-				renderer.ObjectRenderers.Remove(code);
-			}
+			//if (code is not null)
+			//{
+			//	renderer.ObjectRenderers.Remove(code);
+			//}
 
-			renderer.ObjectRenderers.Insert(0, new ColorCodeBlockRenderer());
+			//renderer.ObjectRenderers.Insert(0, new ColorCodeBlockRenderer());
 		}
 	}
 }
